@@ -11,9 +11,15 @@ class Catalogue:
 
     def load(self):
         self.items = {}
+        self.addValidItems(self.loadItems())
+        self.notifyLoaded()
+
+    def loadItems(self):
         with open(self.path, 'r') as f:
             loaded = json.load(f)
+        return loaded
 
+    def addValidItems(self, loaded):
         for item in loaded:
             price = loaded[item]
             try:
@@ -22,6 +28,7 @@ class Catalogue:
             except ValueError:
                 self.notifier.notify("error loading some items")
 
+    def notifyLoaded(self):
         if self.isEmpty():
             self.notifier.notify("empty catalogue")
         else:
