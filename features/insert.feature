@@ -11,7 +11,7 @@ Feature: Inserting items into a shopping basket
 
 	Scenario: Inserting into a basket with items in it
 		Given I have a basket
-		And the basket has 2 items in it
+		And the basket already has 2 items in it
 		And I have an item
 		When I insert the item into the basket
 		Then I am notified 'Item inserted'

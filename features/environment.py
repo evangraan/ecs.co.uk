@@ -19,5 +19,6 @@ def bootstrap(context):
 def before_all(context):
     use_fixture(bootstrap, context)
 
-def before_each(context):
+def before_scenario(context, scenario):
     context.notifier.clear()
+    context.basket.clear()

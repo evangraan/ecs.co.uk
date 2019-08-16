@@ -18,10 +18,6 @@ def step_impl(context):
 def step_impl(context):
     assert context.catalogue.size() == 0
 
-@then('I am notified \'empty catalogue\'')
-def step_impl(context):
-    assert context.notifier.wasNotified("empty catalogue")
-
 @given('the catalogue has valid items in it')
 def step_impl(context):
     context.orchestrator.fullCatalogue()
@@ -42,10 +38,6 @@ def step_impl(context):
             isAFloat = False
         assert isAFloat == True
 
-@then('I am notified \'catalogue successfully loaded\'')
-def step_impl(context):
-    assert context.notifier.wasNotified("catalogue successfully loaded")
-
 @given('an item does not have a valid name')
 def step_impl(context):
     context.orchestrator.invalidNameCatalogue()
@@ -57,10 +49,6 @@ def step_impl(context):
 @then('the invalid item is not in the loaded list')
 def step_impl(context):
     assert context.catalogue.lookup("Baked Beans") == None
-
-@then('I am notified \'error loading some items\'')
-def step_impl(context):
-    assert context.notifier.wasNotified("error loading some items")
 
 @given('an item does not have a valid price')
 def step_impl(context):

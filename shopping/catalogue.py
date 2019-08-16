@@ -40,7 +40,7 @@ class Catalogue:
     def getItems(self):
         return self.items
 
-    def lookup(self, name):
-        if name in self.items:
-            return self.items[name]
+    def lookup(self, item):
+        if item in self.items:
+            return self.items[item]
         return None
