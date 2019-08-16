@@ -1,31 +1,80 @@
-# cx-interview-questions
+# 1
 
-## Questions
+## Running
 
-* [Shopping Basket](question.0.shopping_basket.md)
+You can run the system so:
 
-## About this repo
 
-This repo contains questions which are part of the ECS interview process. 
 
-This exercise is used as part of our interview process. This question is frquently updated. Please do not attempt this question until you are asked, as you may be directed to implement only a single question or part of a question.
+You can run the test suite so, from the project root directory:
 
-## How to implement and submit your work
+behave 
 
-Please begin this exercise by forking the repo into your own GitHub workspace. When you have finished your work, please email your contact at ECS with the URL of your forked repo. There is no time-limit on this work, however we try to respect our candidate's time. We feel that this exercise can be completed in 1-3 hours. 
+## 1.1
 
-Your submission must be implemented in Python 3.7. We may not be able to review code submitted in any other language. 
+* [Link](link.md)
 
-## Bonus questions
+## Design
+After I had specced the system using the BDD suite (usually this would be limited to the highest value feature, which I'd then implement, and so iterate, but this project is small enough to spec in one go), I decided on the following architecture for the system:
 
-Bonus questions are optional. You will not be penalized if you do not attempt the bonus questions.
+- json for the data store (a simple file)). json is often a great choice, and as data can be sourced from databases (which in a microservices world often sit behind APIs) or diretly from APIs, json is a safe, flexible choice.
+- given the test direction to focus on the calculation core rather, I included a simple configuration for specifying the catalogue data source fule in the project. I did how-ever include a check whether a .reload file is present, which would load a new catalogue if present and then delete the .reload signal. This is to allow for change of catalogue without restarting the system.
+- Using MVC is always a good idea for systems that have output and models (the rules in this case) and so I implemented a very simple command line controller and stdout view.
+- To avoid over- and under-design I would normally ask the client what success from their perspective looks like and try and elicit some non functional requirements to guide the selection of design components. From the test instructions I extracted the NFR 'focus on a solid core algorithm' and so I made the rest really simple, but I did sketch out some basic design components as indicated above so that it is easy to grow and maintain the system without too much refactor.
 
-## How we will assess your submission
+# Testing
+On projects that use BDD through all layers of the stack I would normally reserve unit testing only for TDD purposes or core, complex algorithms and let BDD drive coverage. In cases where BDD is exclusively at the UA or integration level, I would use unit tests more prolifically. On this project then I think BDD suffices and I did not include unit tests.
 
-* We will run your code. Please include all relevant documentation and scripts which will allow us to execute your project.
+I did how-ever add the test suit to my personal Jenkins, and so this project can be added to a CI/CD pipeline. You can see it running here:
 
-* We are just as interested in your process as your final product. We want to understand your workflow, and your testing strategy.
+https://host.3sds.co.uk:8080
+username: admin
+password: kDFmL?z2%,'CPjAy
 
-* We will read your code in order to determine if your implementation matches the requirements given in the question.
+Please note there are other personal project on this system, please only access the ecs.co.uk project :)
+I'll change the password in a couple of days. Its not a critical system though, I do not as a rule share admin passwords.
 
-* We will look at your coding style, to determine if your style is clear and easy to read.
+## Notes
+
+I would recommend to the retailer that they standardize on one term for items (either product or item.) In my implementation I used item consistently, and in 'catalogue.feature' indicated that Product is a synonym.
+
+In the case of data itegrity issues in the catalogue, I made the decision to load all valid items, but to report an error as well.
+
+I was not sure if you intended the *** pre- and post-fixes to the item name to be included. I apologize if it was intended as part of the name, usually I'd ask the client. In my data set I did not include the ***s.
+
+## Discount algorithm
+
+I used a simple Chain of Responsibility design to process discount offers using the basket. Each offer returns the savings it can apply, and returns the basket items list, now augmented with the offer identifier tagged onto each item that was part of the set of items that matched the offer.
+
+Once the offers have all been processed, the items are traversed to see which items have more than one offer attached to it. For these, the highest offer saving is selected, and the other competing offer tag(s) removed from all items in the basket. The multiple offer check is then repeated until no product has more than one offer attached to it.
+
+## Development approach
+
+This excercise was build test-first, specifically using the 'behave' BDD framework. Tests were written without any implementation code existing, after which the code was implemented using TDD (red-green-refactor).
+
+All dependencies can be installed by running TBD.
+
+If you want to install behave manually, please issue the command:
+
+pip install behave
+
+All BDD tests live in the 'features' directory.
+
+All BDD test steps live in 'features/steps'.
+
+## Development environment
+
+This excercise was completed on an AWS reserved instance that I own running Ubuntu 18.04 (bionic). If you'd like to setup a similar environment, it is easy to do so:
+
+Spin up an instance from the AWS marketplace
+
+sudo apt-get install python3.7
+
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
+
+git clone https://github.com/evangraan/ecs.co.uk.git
+
+# Todo
+
+- convert tabs to 4 spaces in all files
+- 
