@@ -28,5 +28,4 @@ def step_impl(context, number):
 
 @then('the basket has {number} items in it')
 def step_impl(context, number):
-    print(number + "==" + str(context.basket.size()))
     assert context.basket.size() == int(number)

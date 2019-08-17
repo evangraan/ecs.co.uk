@@ -28,14 +28,11 @@ class Basket:
 
     def lookup(self, item):
         if item in self.items:
-            return self.items[item]
+            return int(self.items[item])
         return None
 
     def size(self):
-        n = 0
-        for item in self.items:
-            n = n + int(self.items[item])
-        return n
+        return sum(self.lookup(item) for item in self.items)
 
     def getItems(self):
         return self.items
@@ -58,18 +55,10 @@ class Basket:
 
     def __calculateDiscount(self, catalogue, offers):
         discounts = offers.calculateBestDiscount(catalogue, self)
-        total = 0
-        for discount in discounts:
-            total = total + discounts[discount]['discount']
-        return total
+        return sum(discounts[discount]['discount'] for discount in discounts)
 
     def __calculateSubTotal(self, catalogue):
-        n = 0
-        for item in self.items:
-            quantity = self.items[item]
-            price = catalogue.lookup(item)
-            n = n + quantity * float(price)
-        return n
+        return sum(self.items[item] * catalogue.lookup(item) for item in self.items)
 
     def __listContents(self, catalogue):
         self.notifier.notify("number of items: " + str(self.size()))
