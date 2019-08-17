@@ -14,4 +14,4 @@ I added the BDD and unit test suits to my personal Jenkins, and so this project 
 
 ## Note
 
-You can anonymously browse the projects, their configurations and issue builds. The rest of the actions are restricted to authenticated users only.
+You can anonymously browse the projects and issue builds. The rest of the actions are restricted to authenticated users only.
