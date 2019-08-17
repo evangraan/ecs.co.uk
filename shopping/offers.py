@@ -52,8 +52,6 @@ class Offers:
         return discounts
 
     def __mergeDiscountIfBetter(self, discounts, discount):
-        print("discount: " + str(discount))
-        print("discounts[discount]: " + str(discounts[discount["item"]]))
         if discount["discount"] > discounts[discount["item"]]["discount"]:
             discounts[discount["item"]] = discount
         return discounts
