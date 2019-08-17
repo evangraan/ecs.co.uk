@@ -58,7 +58,7 @@ I fixed a few issue in the question and made a pull request for them
 
 ## Development approach
 
-This excercise was build test-first, specifically using the 'behave' BDD framework. Tests were written without any implementation code existing, after which the code was implemented using TDD (red-green-refactor).
+This excercise was built test-first, specifically using the 'behave' BDD framework. Tests were written without any implementation code existing, after which the code was implemented using TDD (red-green-refactor).
 
 For core components (basket and discounts) unit tests were also written.
 
@@ -84,6 +84,3 @@ This excercise was completed on an AWS reserved instance that I own running Ubun
 
 - convert tabs to 4 spaces in all files
 - visually inspect should be automated
-- dependency script (shell? python tool?)
-- describe json change required
-- python coding conventions
