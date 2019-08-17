@@ -1,7 +1,6 @@
-rules = {}
+from utils import*
 
-def fixDecimal2Places(value):
-    return round(value*100)/100
+rules = {}
 
 def buy2get1free(catalogue, item, n):
     return { "item" : item, "discount" : fixDecimal2Places(n // 2 * catalogue.lookup(item)) }

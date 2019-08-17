@@ -1,5 +1,6 @@
 import json
 from notifier import *
+from utils import *
 
 class Basket:
     def __init__(self, notifier = DefaultNotifier()):
@@ -12,13 +13,13 @@ class Basket:
         self.total = self.subTotal - self.discount
 
     def getSubTotal(self):
-        return self.subTotal
+        return fixDecimal2Places(self.subTotal)
 
     def getDiscount(self):
-        return self.discount
+        return fixDecimal2Places(self.discount)
 
     def getTotal(self):
-        return self.total
+        return fixDecimal2Places(self.total)
 
     def list(self, catalogue, offers):
         self.updateTotals(catalogue, offers)
@@ -51,7 +52,7 @@ class Basket:
 
     def remove(self, item, quantity = 1):
         if item in self.items:
-            self.__removeItem(item)
+            self.__removeItem(item, quantity)
         else:
             self.notifier.notify("item not in basket")
 
@@ -82,7 +83,7 @@ class Basket:
         self.notifier.notify("discount: " + u"\xA3" + f'{self.discount:.2f}')
         self.notifier.notify("total: " + u"\xA3" + f'{self.total:.2f}')
 
-    def __removeItem(self, item, quantity = 1):
+    def __removeItem(self, item, quantity):
         self.items[item] = self.items[item] - quantity
         if self.items[item] <= 0:
             del self.items[item]

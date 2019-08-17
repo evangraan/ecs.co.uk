@@ -11,7 +11,8 @@ class Offers:
     def calculateBestDiscount(self, catalogue, basket):
         discounts = {}
         for offer in self.offers:
-            discounts = self.__mergeBestDiscountForThisOffer(catalogue, offer, basket, discounts)
+            for detail in self.offers[offer]:
+                discounts = self.__mergeBestDiscountForThisOffer(catalogue, offer, detail, basket, discounts)
         return discounts
 
     def load(self):
@@ -28,22 +29,24 @@ class Offers:
     def isEmpty(self):
         return len(self.offers) == 0
 
-    def __mergeBestDiscountForThisOffer(self, catalogue, offer, basket, discounts):
-        discount = self.__calculateDiscount(catalogue, offer, self.offers[offer], basket)
+    def __mergeBestDiscountForThisOffer(self, catalogue, offer, detail, basket, discounts):
+        discount = self.__calculateDiscount(catalogue, offer, detail, basket)
         if discount["item"] != None:
             discounts = self.__mergeDiscountIfBetterOrMissing(discount, discounts)
         return discounts
 
     def __mergeDiscountIfBetterOrMissing(self, discount, discounts):
         if discount["item"] in discounts:
-            discounts = __mergeDiscountIfBetter(discounts, discount)
+            discounts = self.__mergeDiscountIfBetter(discounts, discount)
         else:
             discounts[discount["item"]] = discount
         return discounts
 
     def __mergeDiscountIfBetter(self, discounts, discount):
-        if discount["discount"] > discounts[discount["item"]]:
-            discounts[discount["item"]] = discount["discount"]
+        print("discount: " + str(discount))
+        print("discounts[discount]: " + str(discounts[discount["item"]]))
+        if discount["discount"] > discounts[discount["item"]]["discount"]:
+            discounts[discount["item"]] = discount
         return discounts
 
     def __calculateDiscount(self, catalogue, offer, rule, basket):

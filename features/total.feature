@@ -16,7 +16,7 @@ Feature: Calculating the total for a shopping basket
 		And a second offer matches the same item
 		When I list the items in the basket
 		Then the total for the basket is listed in pounds
-		And the total is the sum of the base prices of both items minus all discounts for offers that match
+		And the total is the sum of the base prices of both items minus the best discounts for offers that match
 		And the total is accurate to 2 decimal places
 
 	Scenario: Calculating the total for a basket with items in it but no matching offers

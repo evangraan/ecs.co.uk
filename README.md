@@ -86,7 +86,6 @@ git clone https://github.com/evangraan/ecs.co.uk.git
 # Todo
 
 - convert tabs to 4 spaces in all files
-- offers test?
 - visually inspect should be automated
 - dependency script (shell? python tool?)
 - describe json change required
