@@ -10,13 +10,8 @@ I added the BDD and unit test suits to my personal Jenkins, and so this project 
 
 ## Credentials
 
-* [Login to Jenkins](http://host.3sds.co.uk:8080)
-
-`username: admin`
-
-`password: kDFmL?z2%,'CPjAy`
+* [Jenkins Dashboard](http://host.3sds.co.uk:8080)
 
 ## Note
 
-Please note there are other personal project on this system, please only access the ecs.co.uk project :)
-I'll change the password in a couple of days. Its not a critical system though, I do not as a rule share admin passwords.
+You can anonymously browse the projects, their configurations and issue builds. The rest of the actions are restricted to authenticated users only.
