@@ -38,17 +38,17 @@ The "Basket 2" example indicates a discount not achievable with the rules specif
 Though the full set of requirements is BDD tested, bonus implementations have only been unit tested.
 
 ### question 1
-I added an example rule to discounts.py that iterates all items in the basket, count the ones that are in the subset, and if that number is greater than or equal to the desired N, returns the price of the cheapest as discount. This is a generic algorithm, so any number of these rules can be added using the schema below. The indicator to the Offer class that this is a basket-wide offer is the key "basket".
+I added a buy-N-of-X rule to discounts.py that iterates all items in the basket, count the ones that are in the subset, and if that number is greater than or equal to the desired N, returns the price of the cheapest as discount. This is a generic algorithm, so any number of these rules can be added using the schema below. The indicator to the Offer class that this is a basket-wide offer is the key "basket".
 
 `"basket":[{"rule" : "Buy N of X, get the cheapest one for free", "data" : { "N" : 3, "X" : [ "Shampoo (Medium)", "Shampoo (Large)", "Shampoo (Small)", "Biscuits" ] }}, "rule" : "Some other rule that also applies to the basket", "data": {"other" : "data"}]`
 
 ### question 2
 I think this would get complex very fast. I had decided early on to follow BDD and show some unit tests, add Jenkins, etc. I decided not to implement the solution for this bonus question.
 
-From an algorithmic perspective though, I would probably approach it by keep track of which items had discounts applied to them when discounting inividual item offers. Then when processing basket-wide offers, I would first apply the tracked discounts to items already in the basket, and then evaluate basket-wide offers.
+From an algorithmic perspective though, I would probably approach it by keeping track of which items had discounts applied to them when discounting inividual item offers. Then when processing basket-wide offers, I would first apply the tracked discounts to items already in the basket, and then evaluate basket-wide offers.
 
 ### question 3
-I fixed a few issue in the question and made a pull request for them:
+I fixed a few issues in the question and made a pull request for them:
 
 * [Pull request](https://github.com/ecs-cx/cx-interview-questions/pull/3)
 
