@@ -2,17 +2,48 @@
 
 ## Running
 
-You can run the system so:
+### Manually
+
+`cd shopping`
+`python example-usage.py`
+
+### Unit Tests
+
+`cd tests`
+`python test_basket.py`
+`python test_discounts.py`
+
+### BDD suite
+
+`behave`
+
+### Continuous Integration
+
+* [Jenkins](jenkins.md)
 
 
+## Comment on the examples provided
 
-You can run the test suite so, from the project root directory:
+The "Basket 1" example indicates a discount not achievable with the rules specified. The buy 2 get 1 free offer would suggest that 2 items should be given free, but the question sets the expectation at only one free item. The actual discount would be 1.89
 
-behave 
+The "Basket 2" example indicates a discount not achievable with the rules specified. The actual discount would be 1.89 (0.99 from the 'buy 2 get 1 free' offer for the 2 tins of baked beans, 0 for biscuits as there are no offers specified for biscuits and 0.99 from the 25% discount on sardines.)
+
+My assumption then is that these examples are not based on the offers specified as current, but from a previous set of offers no longer valid. The question does specify that offers change.
+
+## Bonus questions
+
+### question 1
+I added an example rule to discounts.py that iterates all items in the basket, count the ones that are in the subset, and if that number is greater than or equal to the desired N, returns the price of the cheapest as discount.
+
+### question 2
+I simply split the rules into two lists, those that apply to 1 item only and those that apply to subsets. Rules that apply to subsets are processed in offer.py after rules that apply to individual items. The desired behaviour is achieved.
+
+## question 3
+I fixed a few issue in the question and made a pull request for them
 
 ## 1.1
 
-* [Link](link.md)
+* [Design notes](design.md)
 
 ## Design
 Aggregation over containment. The basket class does not contain a catalogue or offers, rather these are provided to it across its public API
@@ -30,14 +61,7 @@ I added some tests for features I found useful in building the solution, such as
 
 On projects that use BDD through all layers of the stack I would normally reserve unit testing only for TDD purposes or core, complex algorithms and let BDD drive coverage. In cases where BDD is exclusively at the UA or integration level, I would use unit tests more prolifically. On this project then I think BDD suffices and I did not include unit tests.
 
-I did how-ever add the test suit to my personal Jenkins, and so this project can be added to a CI/CD pipeline. You can see it running here:
 
-https://host.3sds.co.uk:8080
-username: admin
-password: kDFmL?z2%,'CPjAy
-
-Please note there are other personal project on this system, please only access the ecs.co.uk project :)
-I'll change the password in a couple of days. Its not a critical system though, I do not as a rule share admin passwords.
 
 ## Notes
 
