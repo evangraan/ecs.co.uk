@@ -43,10 +43,14 @@ I added an example rule to discounts.py that iterates all items in the basket, c
 `"basket":[{"rule" : "Buy N of X, get the cheapest one for free", "data" : { "N" : 3, "X" : [ "Shampoo (Medium)", "Shampoo (Large)", "Shampoo (Small)", "Biscuits" ] }}, "rule" : "Some other rule that also applies to the basket", "data": {"other" : "data"}]`
 
 ### question 2
-I simply split the rules into two lists, those that apply to 1 item only and those that apply to subsets. Rules that apply to subsets are processed in offer.py after rules that apply to individual items. The desired behaviour is achieved.
+I think this would get complex very fast. I had decided early on to follow BDD and show some unit tests, add Jenkins, etc. I decided not to implement the solution for this bonus question.
+
+From an algorithmic perspective though, I would probably approach it by keep track of which items had discounts applied to them when discounting inividual item offers. Then when processing basket-wide offers, I would first apply the tracked discounts to items already in the basket, and then evaluate basket-wide offers.
 
 ### question 3
-I fixed a few issue in the question and made a pull request for them
+I fixed a few issue in the question and made a pull request for them:
+
+* [Pull request](https://github.com/ecs-cx/cx-interview-questions/pull/3)
 
 ## Design
 
@@ -83,8 +87,3 @@ This excercise was completed on an AWS reserved instance that I own running Ubun
 `sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1`
 
 `git clone https://github.com/evangraan/ecs.co.uk.git`
-
-## Todo
-- sum() mechanism everywhere!!
-- see if offer calculation can be simpler!!
-- BDD for bonus questions
