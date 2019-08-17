@@ -41,15 +41,13 @@ class Basket:
         self.items = {}
 
     def insert(self, item, quantity = 1):
-        if item in self.items:
-            self.items[item] = self.items[item] + quantity
-        else:
-            self.items[item] = quantity
+        self.items[item] = self.items[item] + quantity if item in self.items else quantity
         self.notifier.notify("item inserted")
 
     def remove(self, item, quantity = 1):
         if item in self.items:
             self.__removeItem(item, quantity)
+            self.notifier.notify("item removed")
         else:
             self.notifier.notify("item not in basket")
 
