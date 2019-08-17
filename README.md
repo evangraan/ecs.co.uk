@@ -79,8 +79,3 @@ This excercise was completed on an AWS reserved instance that I own running Ubun
 `sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1`
 
 `git clone https://github.com/evangraan/ecs.co.uk.git`
-
-# Todo
-
-- convert tabs to 4 spaces in all files
-- visually inspect should be automated

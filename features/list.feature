@@ -14,7 +14,6 @@ Feature: List in a shopping basket
         When I list the items in the basket
         Then I am notified of the total number of items in the basket
         And I am notified of each item
-        And for each item the name is listed uniquely
         And for each item name the quantity of those items in the basket is listed
         And for each item the base price is listed
         And the sub-total for the basket is listed in pounds

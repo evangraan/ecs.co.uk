@@ -7,10 +7,6 @@ def step_impl(context):
     assert context.notifier.contains("Baked Beans") == True
     assert context.notifier.contains("Sardines") == True
 
-@then('for each item the name is listed uniquely')
-def step_impl(context):
-    print("Note: visually inspect")
-
 @then('for each item name the quantity of those items in the basket is listed')
 def step_impl(context):
     assert context.notifier.contains("Baked Beans : 1") == True
