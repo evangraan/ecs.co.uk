@@ -1,7 +1,8 @@
 import json
+from notifier import *
 
 class Catalogue:
-    def __init__(self, path, notifier):
+    def __init__(self, path, notifier = DefaultNotifier()):
         self.path = path
         self.notifier = notifier
         self.load
@@ -11,15 +12,26 @@ class Catalogue:
 
     def load(self):
         self.items = {}
-        self.addValidItems(self.loadItems())
-        self.notifyLoaded()
+        self.__addValidItems(self.__loadItems())
+        self.__notifyLoaded()
 
-    def loadItems(self):
+    def lookup(self, item):
+        if item in self.items:
+            return self.items[item]
+        return None
+
+    def size(self):
+        return len(self.items)
+
+    def getItems(self):
+        return self.items
+
+    def __loadItems(self):
         with open(self.path, 'r') as f:
             loaded = json.load(f)
         return loaded
 
-    def addValidItems(self, loaded):
+    def __addValidItems(self, loaded):
         for item in loaded:
             price = loaded[item]
             try:
@@ -28,19 +40,9 @@ class Catalogue:
             except ValueError:
                 self.notifier.notify("error loading some items")
 
-    def notifyLoaded(self):
+    def __notifyLoaded(self):
         if self.isEmpty():
             self.notifier.notify("empty catalogue")
         else:
             self.notifier.notify("catalogue successfully loaded")
 
-    def size(self):
-        return len(self.items)
-
-    def getItems(self):
-        return self.items
-
-    def lookup(self, item):
-        if item in self.items:
-            return self.items[item]
-        return None

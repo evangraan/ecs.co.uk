@@ -8,7 +8,7 @@ def step_impl(context):
 
 @given('the catalogue is empty')
 def step_impl(context):
-    context.orchestrator.emptyCatalogue()
+    context.orchestrator.seedCatalogue("empty")
 
 @when('I load the catalogue')
 def step_impl(context):
@@ -20,7 +20,7 @@ def step_impl(context):
 
 @given('the catalogue has valid items in it')
 def step_impl(context):
-    context.orchestrator.fullCatalogue()
+    context.orchestrator.seedCatalogue("full")
 
 @then('I have the correct number of items')
 def step_impl(context):
@@ -40,7 +40,7 @@ def step_impl(context):
 
 @given('an item does not have a valid name')
 def step_impl(context):
-    context.orchestrator.invalidNameCatalogue()
+    context.orchestrator.seedCatalogue("invalid-name")
 
 @then('I have the correct number of items minus one')
 def step_impl(context):
@@ -52,5 +52,10 @@ def step_impl(context):
 
 @given('an item does not have a valid price')
 def step_impl(context):
-    context.orchestrator.invalidPriceCatalogue()
+    context.orchestrator.seedCatalogue("invalid-price")
 
+@given('I have a loaded catalogue')
+def step_impl(context):
+    assert context.catalogue != None
+    context.orchestrator.seedCatalogue("full")
+    context.catalogue.load()
