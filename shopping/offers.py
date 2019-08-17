@@ -1,6 +1,7 @@
 import json
 from discounts import rules
 from notifier import *
+from utils import *
 
 class Offers:
     def __init__(self, path, notifier = DefaultNotifier()):
@@ -13,6 +14,8 @@ class Offers:
         for offer in self.offers:
             for detail in self.offers[offer]:
                 discounts = self.__mergeBestDiscountForThisOffer(catalogue, offer, detail, basket, discounts)
+
+        discounts = self.__applyBasketDiscounts(catalogue, basket, discounts)
         return discounts
 
     def load(self):
@@ -28,6 +31,12 @@ class Offers:
 
     def isEmpty(self):
         return len(self.offers) == 0
+
+    def __applyBasketDiscounts(self, catalogue, basket, discounts):
+        if "basket" in self.offers:
+            value = max(rules[offer["rule"]](catalogue, basket, offer["data"]) for offer in self.offers["basket"])
+            discounts["basket"] = { "item" : "basket", "discount" : fixDecimal2Places(value) }
+        return discounts
 
     def __mergeBestDiscountForThisOffer(self, catalogue, offer, detail, basket, discounts):
         discount = self.__calculateDiscount(catalogue, offer, detail, basket)

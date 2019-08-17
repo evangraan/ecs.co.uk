@@ -1,0 +1,1 @@
+{"Baked Beans": ["buy 2 get 1 free"], "Sardines": ["25% discount"], "basket":[{"rule" : "Buy N of X, get the cheapest one for free", "data" : { "N" : 3, "X" : [ "Shampoo (Medium)", "Shampoo (Large)", "Shampoo (Small)", "Biscuits" ] }}]}

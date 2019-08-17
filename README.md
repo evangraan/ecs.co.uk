@@ -35,8 +35,12 @@ The "Basket 2" example indicates a discount not achievable with the rules specif
 
 ## Bonus questions
 
+Though the full set of requirements is BDD tested, bonus implementations have only been unit tested.
+
 ### question 1
-I added an example rule to discounts.py that iterates all items in the basket, count the ones that are in the subset, and if that number is greater than or equal to the desired N, returns the price of the cheapest as discount.
+I added an example rule to discounts.py that iterates all items in the basket, count the ones that are in the subset, and if that number is greater than or equal to the desired N, returns the price of the cheapest as discount. This is a generic algorithm, so any number of these rules can be added using the schema below. The indicator to the Offer class that this is a basket-wide offer is the key "basket".
+
+`"basket":[{"rule" : "Buy N of X, get the cheapest one for free", "data" : { "N" : 3, "X" : [ "Shampoo (Medium)", "Shampoo (Large)", "Shampoo (Small)", "Biscuits" ] }}, "rule" : "Some other rule that also applies to the basket", "data": {"other" : "data"}]`
 
 ### question 2
 I simply split the rules into two lists, those that apply to 1 item only and those that apply to subsets. Rules that apply to subsets are processed in offer.py after rules that apply to individual items. The desired behaviour is achieved.
@@ -79,3 +83,8 @@ This excercise was completed on an AWS reserved instance that I own running Ubun
 `sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1`
 
 `git clone https://github.com/evangraan/ecs.co.uk.git`
+
+## Todo
+- sum() mechanism everywhere!!
+- see if offer calculation can be simpler!!
+- BDD for bonus questions

@@ -87,6 +87,15 @@ class TestBasket(unittest.TestCase):
         self.assertEqual(self.iut.lookup("Sardines"), None)
         self.assertEqual(self.iut.lookup("Baked Beans"), 10)
 
+    def test_basket_wide_discounts(self):
+        self.__bootstrap("full", "bonus")
+        self.iut.insert("Biscuits", 2)
+        self.iut.insert("Shampoo (Small)", 5)
+        self.iut.updateTotals(self.catalogue, self.offers)
+        self.assertEqual(self.iut.getSubTotal(), 12.4)
+        self.assertEqual(self.iut.getDiscount(), 2.4)
+        self.assertEqual(self.iut.getTotal(), 10)
+
     def __bootstrap(self, catalogueLabel, offersLabel):
         self.catalogue = Catalogue("../orchestration/fixture/catalogue-" + catalogueLabel + ".json")
         self.catalogue.load()
