@@ -10,7 +10,7 @@ I added the BDD and unit test suits to my personal Jenkins, and so this project 
 
 ## Credentials
 
-* [Login to Jenkins](http://admin:kDFmL?z2%,'CPjAy@host.3sds.co.uk:8080)
+* [Login to Jenkins](http://host.3sds.co.uk:8080)
 
 `username: admin`
 
