@@ -1,6 +1,6 @@
 # Design
 
-## Association (Aggregation) over Containment (Ownership)
+## Association and Aggregation over Composition and Ownership
 
 The basket class does not contain a catalogue or offers, rather these are provided to it across its public API
 
