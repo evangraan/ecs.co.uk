@@ -28,11 +28,11 @@ The code for the most part is pretty dry. Catalogue and Offers where tempting to
 
 I try and keep functions meaningul, singly responsible and named for what the function aims to accomplish. I limit the number of parameters per function to 4 max.
 
+The exception on this project is the buyNofX rule algorithm. I could extract 4 functions at least, or turn it into its own class, but it would be the exception and as mentioned elsewhere, I don't feel the pressure to do this yet. If more rules of this complexity are added, I'd take a refactor step to extract classes and methods for rules.
+
 ## Demeter
 
 I also try and avoid violating the Demeter principle where-ever I can, favouring passing dependencies as parameters as opposed to making then variables in the class. Where the class should own the data (e.g. the items in a basket) I did use member fields.
-
-The exception on this project is the buyNofX rule algorithm. I could extract 4 functions at least, or turn it into its own class, but it would be the exception and as mentioned elsewhere, I don't feel the pressure to do this yet. If more rules of this complexity are added, I'd take a refactor step to extract classes and methods for rules.
 
 ## Liskov Substitusion
 
