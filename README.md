@@ -58,7 +58,7 @@ I fixed a few issues in the question and made a pull request for them:
 
 ## Additional Notes
 
-* I would recommend to the retailer that they standardize on one term for items (either product or item.) In my implementation I used item consistently, and in 'catalogue.feature' indicated that Product is a synonym.
+* In my implementation I used 'Item' consistently, and in 'catalogue.feature' indicated that 'Product' is a synonym.
 
 * In the case of data itegrity issues in the catalogue, I made the decision to load all valid items, but to report an error as well.
 
