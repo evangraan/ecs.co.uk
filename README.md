@@ -1,16 +1,19 @@
-# 1
+# ECS shopping card excercise
 
 ## Running
 
 ### Manually
 
 `cd shopping`
+
 `python example-usage.py`
 
 ### Unit Tests
 
 `cd tests`
+
 `python test_basket.py`
+
 `python test_discounts.py`
 
 ### BDD suite
@@ -82,7 +85,9 @@ On my system 'python' is the same as 'python3' Please see the next section for m
 This excercise was completed on an AWS reserved instance that I own running Ubuntu 18.04 (bionic). If you'd like to setup a similar environment, it is easy to do so:
 
 `sudo apt-get install python3.7`
+
 `sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1`
+
 `git clone https://github.com/evangraan/ecs.co.uk.git`
 
 # Todo
