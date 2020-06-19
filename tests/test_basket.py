@@ -100,7 +100,7 @@ class TestBasket(unittest.TestCase):
         self.catalogue = Catalogue("../orchestration/fixture/catalogue-" + catalogueLabel + ".json")
         self.catalogue.load()
         self.offers = Offers("../orchestration/fixture/offers-" + offersLabel + ".json")
-        self.offers.load()
+        self.offers.load() 
 
 if __name__ == '__main__':
     unittest.main()
