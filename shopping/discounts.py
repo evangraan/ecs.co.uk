@@ -36,4 +36,4 @@ def notFound():
 rules["buy 2 get 1 free"] = buy2get1free
 rules["25% discount"] = pc25Discount
 rules["Buy N of X, get the cheapest one for free"] = buyNofX
-rules["not found"] = notFound
+rules["not found"] = notFound 
