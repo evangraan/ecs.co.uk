@@ -46,5 +46,6 @@ class TestBasket(unittest.TestCase):
     def __test_quantity(self, rule, quantity):
         result = rules[rule](self.catalogue, self.item, quantity)
         return result["discount"]
+    
 if __name__ == '__main__':
     unittest.main()
